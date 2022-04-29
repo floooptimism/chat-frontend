@@ -4,18 +4,24 @@ import SideBar from './components/ChatComponents/SideBar/SideBar.vue';
 
 import {ref} from 'vue';
 
-const sideBarOpen = ref(false);  
+const sideBarOpen = ref(false);
+
+const eventHandlers = {
+  toggleSideBar(){
+    sideBarOpen.value = !sideBarOpen.value;
+  }
+}
 
 function toggleSideBar(){
-  sideBarOpen.value = !sideBarOpen.value;
+  
 }
 
 </script>
 
 <template>
   <div>
-    <NavBar @eventKebabClick="toggleSideBar()"/>
-    <SideBar @eventToggleSideBar="toggleSideBar()" v-bind:isSideBarOpen="sideBarOpen" />
+    <NavBar @eventKebabClick="eventHandlers.toggleSideBar()"/>
+    <SideBar @eventToggleSideBar="eventHandlers.toggleSideBar()" v-bind:isSideBarOpen="sideBarOpen" />
   </div>
 </template>
 
