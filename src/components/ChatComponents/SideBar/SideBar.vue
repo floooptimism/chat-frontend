@@ -18,13 +18,21 @@ const props = defineProps({
 
 const emit = defineEmits(["eventToggleSideBar"])
 
-
+// Local reactive references
 const isDisplayingChannels = ref(props.isDisplayingChannels);
 
-function eventGoBackHandler(){
+// Event Handlers
+const eventHandlers = {
+  goBack() {
     isDisplayingChannels.value = true;
+  },
+  channelAddButton() {
+    alert("Adding new channel");
+  }
+
 }
 
+// Computed values
 const SideBarClasses = computed(() => {
   return {
     Open: props.isSideBarOpen,
@@ -37,8 +45,8 @@ const SideBarClasses = computed(() => {
 <template>
   <div class="SideBarContainer" :class="SideBarClasses">
     <div class="TopBar">
-      <ChannelListTopBar v-if="isDisplayingChannels" />
-      <ChannelTopBar v-else @eventGoBack="eventGoBackHandler" />
+      <ChannelListTopBar v-if="isDisplayingChannels" @eventChannelAddButtonClick="eventHandlers.channelAddButton"/>
+      <ChannelTopBar v-else @eventGoBack="eventHandlers.goBack" />
 
       <div class="SideBarClose" @click="emit('eventToggleSideBar')">
             <svg
@@ -89,7 +97,7 @@ const SideBarClasses = computed(() => {
 
 .SideBar {
   @apply relative top-0 left-0 w-64 h-screen;
-  @apply pt-12;
+  @apply pt-12 px-4;
   @apply shadow;
   background-color: #120f13;
   @apply overflow-y-auto;
