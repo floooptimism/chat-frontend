@@ -8,9 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "string-compare": "^1.1.2",
+    "string-similarity": "^4.0.4",
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.2.0",
     "@vitejs/plugin-vue": "^2.3.1",
     "autoprefixer": "^10.4.5",
     "postcss": "^8.4.12",
