@@ -6,7 +6,17 @@ const props = defineProps({
         type: String,
         default: "Unknown entity"
     },
-    entityIdentifier: String
+    entityIdentifier: String,
+    entityEventParam: {
+        type: Object,
+        default() {
+            return null
+        }
+    },
+    classProp: {
+        type: String,
+        default: ""
+    }
 })
 
 const emit = defineEmits(["eventEntityClicked"]);
@@ -14,7 +24,7 @@ const emit = defineEmits(["eventEntityClicked"]);
 </script>
 
 <template>
-    <div class="Entity" @click="emit('eventEntityClicked')">
+    <div :class="`Entity ${props.classProp}`" @click="emit('eventEntityClicked', props.entityEventParam)">
         <div class="ImageContainer">
             <img :src="props.imageSrc" alt="Channel Image" />
         </div>
@@ -28,7 +38,13 @@ const emit = defineEmits(["eventEntityClicked"]);
 <style scoped>
     .Entity {
         @apply flex items-center;
-        @apply py-3;
+        @apply py-3 px-2 rounded;
+        @apply transition-colors ease-linear duration-200;
+    }
+
+
+    .Entity:hover {
+        background-color: #373538;
     }
 
     .ImageContainer {
