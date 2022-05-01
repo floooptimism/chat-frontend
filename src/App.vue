@@ -21,7 +21,7 @@ function toggleSideBar(){
 <template>
   <div>
     <NavBar @eventKebabClick="eventHandlers.toggleSideBar()"/>
-    <SideBar @eventToggleSideBar="eventHandlers.toggleSideBar()" v-bind:isSideBarOpen="sideBarOpen" />
+    <SideBar @eventToggleSideBar="eventHandlers.toggleSideBar()" :isSideBarOpen="sideBarOpen" />
   </div>
 </template>
 
