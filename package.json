@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "pinia": "^2.0.13",
     "string-compare": "^1.1.2",
     "string-similarity": "^4.0.4",
     "vue": "^3.2.25"
