@@ -2,29 +2,25 @@
 import { ref, computed } from "vue";
 import fakerGenerateChannels from "../../../../test_helpers/generateChannels";
 import EntityLabel from "../../../EntityLabel/EntityLabel.vue";
-import stringSimilarity  from 'string-compare';
+import stringSimilarity from "string-compare";
+import useChannels from "../../../../stores/channel";
 
-// local states
+//* local states
 const searchChannelInput = ref("");
 
-// faker
-const channels = fakerGenerateChannels(10);
+//* Faker
+const fakeChannels = fakerGenerateChannels(10);
 
-// Computed values
-const filteredChannels = computed(() => {
-  if (searchChannelInput.value.trim() === "") {
-    return channels;
-  }
-  return channels.filter(channel => stringSimilarity(channel.channelName, searchChannelInput.value) >= 0.6);
-});
+//* Channel Store
+const channels = useChannels();
+channels.setChannelList(fakeChannels);
 
-// event handlers
+//* Event Handlers
 const eventHandler = {
-  entityClicked() {
-    alert("clicked");
-  }
-}
-
+  channelClicked(channel) {
+    channels.setCurrentChannel(channel);
+  },
+};
 </script>
 
 
@@ -38,14 +34,17 @@ const eventHandler = {
 
     <div class="ChannelsList">
       <EntityLabel
-        v-for="channel in filteredChannels"
+        v-for="channel in channels.searchChannel(searchChannelInput)"
         :imageSrc="channel.channelImage"
         :entityName="channel.channelName"
         :key="channel.channelId"
-        @eventEntityClicked="eventHandler.entityClicked()"
+        :entityObject="channel"
+        classProp="cursor-pointer"
+        :entityEventParam="{...channel}"
+        @eventEntityClicked="eventHandler.channelClicked"
       />
-      <div v-if="filteredChannels.length == 0">
-          No results for "{{ searchChannelInput.trim() }}." :(
+      <div v-if="channels.searchChannel(searchChannelInput).length == 0">
+        No results for "{{ searchChannelInput.trim() }}." :(
       </div>
     </div>
   </div>
@@ -53,7 +52,7 @@ const eventHandler = {
 
 <style scoped>
 .Channels {
-  @apply flex flex-col px-4 pt-4;
+  @apply flex flex-col px-2 pt-4;
   color: #e0e0e0;
 }
 
