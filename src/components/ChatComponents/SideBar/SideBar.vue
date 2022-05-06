@@ -4,27 +4,15 @@ import ChannelListTopBar from "./components/ChannelListTopBar.vue";
 import ChannelTopBar from "./components/ChannelTopBar.vue";
 import ChannelsDisplay from "./components/ChannelsDisplay.vue";
 import ChannelInfo from "./components/ChannelInfo.vue";
+import useChannels from "../../../stores/channel";
+import useSideBarStore from "../../../stores/sidebar";
 
-const props = defineProps({
-  isSideBarOpen: {
-    type: Boolean,
-    default: false,
-  },
-  isDisplayingChannels: {
-    type: Boolean,
-    default: false,
-  },
-});
-
-const emit = defineEmits(["eventToggleSideBar"])
-
-// Local reactive references
-const isDisplayingChannels = ref(props.isDisplayingChannels);
+const sideBarStore = useSideBarStore();
 
 // Event Handlers
 const eventHandlers = {
   goBack() {
-    isDisplayingChannels.value = true;
+    sideBarStore.setIsDisplayingChannels(true);
   },
   channelAddButton() {
     alert("Adding new channel");
@@ -35,20 +23,21 @@ const eventHandlers = {
 // Computed values
 const SideBarClasses = computed(() => {
   return {
-    Open: props.isSideBarOpen,
-    Close: !props.isSideBarOpen,
+    Open: sideBarStore.isOpen,
+    Close: !sideBarStore.isOpen,
   };
 });
+
 </script>
 
 
 <template>
   <div class="SideBarContainer" :class="SideBarClasses">
     <div class="TopBar">
-      <ChannelListTopBar v-if="isDisplayingChannels" @eventChannelAddButtonClick="eventHandlers.channelAddButton"/>
+      <ChannelListTopBar v-if="sideBarStore.isDisplayingChannels" @eventChannelAddButtonClick="eventHandlers.channelAddButton"/>
       <ChannelTopBar v-else @eventGoBack="eventHandlers.goBack" />
 
-      <div class="SideBarClose" @click="emit('eventToggleSideBar')">
+      <div class="SideBarClose"  @click="sideBarStore.toggleSideBar()">
             <svg
             class="fill-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -63,8 +52,8 @@ const SideBarClasses = computed(() => {
       </div>
     </div>
 
-    <div class="SideBar">
-      <ChannelsDisplay v-if="isDisplayingChannels" />
+    <div class="SideBar" >
+      <ChannelsDisplay v-if="sideBarStore.isDisplayingChannels" />
       <ChannelInfo v-else />
     </div>
   </div>
@@ -73,8 +62,9 @@ const SideBarClasses = computed(() => {
 
 <style scoped>
 .SideBarContainer {
-  @apply fixed top-0 w-screen h-screen;
+  @apply fixed top-0 w-64 h-screen;
   @apply transition-all duration-200 ease-linear;
+  @apply pointer-events-none z-50;
 }
 
 .Open {
@@ -82,7 +72,8 @@ const SideBarClasses = computed(() => {
 }
 
 .Close {
-  transform: translateX(-100%);
+  transform: translateX(-160%);
+  @apply md:translate-x-0;
 }
 
 .TopBar {
@@ -91,16 +82,19 @@ const SideBarClasses = computed(() => {
   @apply shadow;
   @apply z-50;
   @apply font-medium;
+  @apply pointer-events-auto;
   background-color: #120f13;
   color: #e0e0e0;
 }
 
 .SideBar {
+  @apply pointer-events-auto;
   @apply relative top-0 left-0 w-64 h-screen;
   @apply pt-12 px-4;
   @apply shadow;
   background-color: #120f13;
   @apply overflow-y-auto;
+  overscroll-behavior:  contain;
 }
 
 .SideBarClose {

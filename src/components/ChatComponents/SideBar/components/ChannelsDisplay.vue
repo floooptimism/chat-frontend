@@ -1,24 +1,21 @@
 <script setup>
 import { ref, computed } from "vue";
-import fakerGenerateChannels from "../../../../test_helpers/generateChannels";
 import EntityLabel from "../../../EntityLabel/EntityLabel.vue";
 import stringSimilarity from "string-compare";
 import useChannels from "../../../../stores/channel";
+import useSideBarStore from "../../../../stores/sidebar";
 
 //* local states
 const searchChannelInput = ref("");
 
-//* Faker
-const fakeChannels = fakerGenerateChannels(10);
-
-//* Channel Store
+//*  Stores
 const channels = useChannels();
-channels.setChannelList(fakeChannels);
-
+const sideBarStore = useSideBarStore();
 //* Event Handlers
 const eventHandler = {
   channelClicked(channel) {
     channels.setCurrentChannel(channel);
+    sideBarStore.setIsDisplayingChannels(false);
   },
 };
 </script>
@@ -51,6 +48,9 @@ const eventHandler = {
 </template>
 
 <style scoped>
+
+
+
 .Channels {
   @apply flex flex-col px-2 pt-4;
   color: #e0e0e0;
@@ -58,6 +58,8 @@ const eventHandler = {
 
 .InputSearch {
   background-color: #3c393f;
+  @apply transition-all duration-150 ease-linear;
+  @apply outline-none border-2 border-transparent focus:border-gray-600;
   @apply p-2 rounded-md;
 }
 

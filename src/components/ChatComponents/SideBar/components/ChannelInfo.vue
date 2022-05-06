@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import { faker } from "@faker-js/faker";
 import EntityLabel from "../../../EntityLabel/EntityLabel.vue";
+import useChannels from "../../../../stores/channel";
+
+const channelsStore = useChannels();
 
 const props = defineProps({
   channelName: {
@@ -27,11 +30,11 @@ const channelMembersList = ref(props.channelMembersList);
 <template>
   <div class="ChannelInfo">
     <h1 class="ChannelName">
-      {{ props.channelName }}
+      {{ channelsStore.currentChannel && channelsStore.currentChannel.channelName }}
     </h1>
 
     <p class="ChannelDescription">
-      {{ props.channelDescription }}
+      {{ channelsStore.currentChannel && channelsStore.currentChannel.channelDescription }}
     </p>
 
     <div class="MembersContainer">
@@ -54,18 +57,22 @@ const channelMembersList = ref(props.channelMembersList);
 }
 
 .ChannelName {
-  @apply text-xl font-medium tracking-wide;
+}
+
+.MembersHeader {
+}
+
+.ChannelName, .MembersHeader{
+  @apply text-lg font-medium tracking-wide;
 }
 
 .ChannelDescription {
   @apply mt-3;
+  font-family: 'Overpass', sans-serif;
 }
 
 .MembersContainer {
   @apply mt-6;
 }
 
-.MembersHeader {
-  @apply text-xl font-medium tracking-wide;
-}
 </style>
