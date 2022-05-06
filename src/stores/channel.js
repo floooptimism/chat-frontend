@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
 import stringSimilarity  from 'string-compare';
+import fakerGenerateChannels from '../test_helpers/generateChannels'
 
 const useChannels = defineStore('channels',{
     
     state: () => {
         return {
-            channelList: [],
+            channelList: fakerGenerateChannels(10),
             currentChannel: null,
         }
     },
@@ -16,7 +17,7 @@ const useChannels = defineStore('channels',{
                 if (channelName.trim() === "") {
                     return state.channelList;
                   }
-                return state.channelList.filter(channel => stringSimilarity(channel.channelName, channelName) >= 0.6);
+                return state.channelList.filter(channel => stringSimilarity(channel.channelName, channelName) >= 0.5);
             }
         }
     },
@@ -33,5 +34,6 @@ const useChannels = defineStore('channels',{
 
 
 })
+
 
 export default useChannels;
