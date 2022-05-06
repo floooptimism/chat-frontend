@@ -3,8 +3,47 @@
 @tailwind utilities;
 
 
+@layer utilities {
+    .content-width-if-desktop {
+        width: calc(100% - 256px);
+    }
+}
+
+
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #252329 #ffffff;
+}
+*::-webkit-scrollbar {
+    width: 12px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #1b171c;
+    border-radius: 10px;
+    border: 3px solid #120f13;
+}
+*::-webkit-scrollbar-track {
+    
+}
+
+
+
 :root {
     --primary-color: #252329;
     --sidebar-color: #120f13;
     --text-color: #e0e0e0;
 }
+
+body {
+    background-color: var(--primary-color);
+}
+
+
