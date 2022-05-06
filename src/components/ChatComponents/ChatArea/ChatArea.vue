@@ -24,7 +24,6 @@ let messages = generateMessages(5, users);
 
 
 
-
 </script>
 
 <template>
