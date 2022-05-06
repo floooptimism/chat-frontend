@@ -49,11 +49,14 @@ const emit = defineEmits(["eventEntityClicked"]);
 
     .ImageContainer {
         @apply w-8 h-8;
+        min-height: 2rem;
+        min-width: 2rem;
         @apply overflow-hidden;
         @apply rounded-md;
     }
 
     .ImageContainer img {
+        object-fit: cover;
         width: 100%;
         height: 100%;
     }
