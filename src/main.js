@@ -1,22 +1,16 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './global.css';
-import useChannels from './stores/channel';
+import { createApp } from "vue";
+import App from "./App.vue";
+import "./global.css";
+import faker from "@faker-js/faker";
 
-// Vue Plugins
-import { createPinia } from 'pinia';
-
-// devtools plugin
-// import FlashUpdates from 'vue-devtool-flash-updates';
-
+// Pinia instance
+import pinia from "./stores/piniaInstance";
 
 const app = createApp(App);
 
-app.use(createPinia());
-// app.use(FlashUpdates);
+app.use(pinia);
 
-window.store = {};
-window.store.channels = useChannels();
+let username = faker.animal.dog();
+let token = faker.animal.fish();
 
-
-app.mount('#app');
+app.mount("#app");
