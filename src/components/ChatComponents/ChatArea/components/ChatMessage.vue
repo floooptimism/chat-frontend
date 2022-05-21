@@ -13,7 +13,7 @@ const props = defineProps({
         default: '',
     },
     time: {
-        type: String,
+        type: Date,
         default: '',
     },
     content: {
