@@ -8,8 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "console-log-colors": "^0.2.3",
     "moment": "^2.29.3",
     "pinia": "^2.0.13",
+    "socket.io-client": "^4.5.1",
     "string-compare": "^1.1.2",
     "string-similarity": "^4.0.4",
     "vue": "^3.2.25"
