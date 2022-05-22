@@ -36,7 +36,9 @@ class ChatClient{
             update_rooms: [],
             other_user_joined_room: [], 
             other_user_left_room: [],
-            join_room_success: []
+            join_room_success: [],
+            connected: [],
+            disconnected: []
         };
 
         /** @property {Boolean} connected - Indicates if the client is connnected or not */
@@ -45,6 +47,10 @@ class ChatClient{
 
     setUsername(username){
         this.username = username;
+    }
+
+    isConnected(){
+        return this.connected;
     }
 
     setCurrentRoom(roomID){
@@ -84,11 +90,14 @@ class ChatClient{
 
         this.io.on('connect', () => {
             this.connected = true;
+            this.notifySubscribers('connected', {});
             success && success();
         });
-        this.io.on('connect_error', fail || (() => {
-            this.disconnect();
-        }));
+        this.io.on('connect_error', ()=>{
+            self.disconnect();
+            self.notifySubscribers('disconnected', {});
+            fail && fail();
+        });
 
         this.io.on('message_from_room', function ({user, message}){
             self.notifySubscribers('message_from_room', {user, message});
