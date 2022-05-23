@@ -170,7 +170,7 @@ class ChatClient{
         }
         this.events[event].push(callback);
 
-        return function(){
+        return () => {
             this.events[event] = this.events[event].filter(cb => cb !== callback);
         }
     }
