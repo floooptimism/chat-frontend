@@ -2,15 +2,16 @@
 import { ref, computed } from "vue";
 import EntityLabel from "../../../EntityLabel/EntityLabel.vue";
 import stringSimilarity from "string-compare";
-import useChannels from "../../../../stores/channel";
-import useSideBarStore from "../../../../stores/sidebar";
+
+//* Stores
+import useChannelStore from "../../../../stores/channel.store";
+import useSideBarStore from "../../../../stores/sidebar.store";
+const channels = useChannelStore();
+const sideBarStore = useSideBarStore();
 
 //* local states
 const searchChannelInput = ref("");
 
-//*  Stores
-const channels = useChannels();
-const sideBarStore = useSideBarStore();
 //* Event Handlers
 const eventHandler = {
   channelClicked(channel) {

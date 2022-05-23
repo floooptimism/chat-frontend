@@ -1,6 +1,6 @@
 <script setup>
-import useChannels from '../../../stores/channel';
-import useSideBarStore from '../../../stores/sidebar';
+import useChannels from '../../../stores/channel.store';
+import useSideBarStore from '../../../stores/sidebar.store';
 
 // stores
 const channelsStore = useChannels();

@@ -1,6 +1,11 @@
 import {io} from 'socket.io-client';
+
+
 /**
  * Client for the chat socket server
+ * Client is it's own event system.
+ * Modules can listen for events coming from client.
+ * Check the property `events` in the module to see what events are available
  */
 
 class ChatClient{
@@ -32,13 +37,13 @@ class ChatClient{
          * @property {object} events  - a map of event names to callback functions
          */
         this.events = {
-            message_from_room: [],
-            update_rooms: [],
-            other_user_joined_room: [], 
-            other_user_left_room: [],
-            join_room_success: [],
-            connected: [],
-            disconnected: []
+            message_from_room: [],          // Triggered when a message is received from a room
+            update_rooms: [],               // Triggered when the list of rooms is updated
+            other_user_joined_room: [],     // Triggered when a user joins a room
+            other_user_left_room: [],       // Triggered when a user leaves a room
+            join_room_success: [],          // Triggered when this client successfully joins a room
+            connected: [],                  // Triggered when the client is connected to the socket server
+            disconnected: []                // Triggered when the client is disconnected from the socket server
         };
 
         /** @property {Boolean} connected - Indicates if the client is connnected or not */
@@ -128,6 +133,7 @@ class ChatClient{
      * @param {string} message 
      */
     sendMessage(message){
+        if(!this.currentRoom) return;
         this.io.emit('message_to_room', {
             message: message
         });

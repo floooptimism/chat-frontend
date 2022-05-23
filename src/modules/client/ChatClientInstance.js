@@ -1,17 +1,17 @@
 import pinia from '../../stores/piniaInstance';
 
 // * Stores
-import useChannel from '../../stores/channel';
-import useUsersInChannel from '../../stores/usersInChannel';
-import useChatClientState from '../../stores/chatClient';
+import useChannelStore from '../../stores/channel.store';
+import useUsersInChannelStore from '../../stores/usersInChannel.store';
+import useChatClientStateStore from '../../stores/chatClient.store';
 
 import ChatClient from './ChatClient';
 
 
 const client = new ChatClient();
-const channelStore = useChannel(pinia);
-const usersInChannelStore = useUsersInChannel(pinia);
-const chatClientStore = useChatClientState(pinia);
+const channelStore = useChannelStore(pinia);
+const usersInChannelStore = useUsersInChannelStore(pinia);
+const chatClientStore = useChatClientStateStore(pinia);
 
 window.chatClient = chatClientStore;
 

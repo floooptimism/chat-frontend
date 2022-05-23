@@ -4,10 +4,11 @@ import ChannelListTopBar from "./components/ChannelListTopBar.vue";
 import ChannelTopBar from "./components/ChannelTopBar.vue";
 import ChannelsDisplay from "./components/ChannelsDisplay.vue";
 import ChannelInfo from "./components/ChannelInfo.vue";
-import useChannels from "../../../stores/channel";
-import useSideBarStore from "../../../stores/sidebar";
 
+//* Using tores
+import useSideBarStore from "../../../stores/sidebar.store";
 const sideBarStore = useSideBarStore();
+
 
 // Event Handlers
 const eventHandlers = {

@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import useAuth from "../../stores/auth";
+import useAuthStore from "../../stores/auth.store";
 import pinia from "../../stores/piniaInstance";
 
 const supabase = createClient(
@@ -12,7 +12,7 @@ const supabase = createClient(
 );
 
 export function initSupaBase() {
-  let authStore = useAuth(pinia);
+  let authStore = useAuthStore(pinia);
   supabase.auth.onAuthStateChange((event, session) => {
     console.log(event);
     if (session) {

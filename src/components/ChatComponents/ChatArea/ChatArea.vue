@@ -5,7 +5,7 @@ import generateUsers from '../../../test_helpers/generateUsers'
 import ChatMessage from './components/ChatMessage.vue';
 import ChatInput from './components/ChatInput.vue';
 
-import useChannels from '../../../stores/channel';
+import useChannels from '../../../stores/channel.store';
 import { computed } from 'vue';
 
 const channels = useChannels();

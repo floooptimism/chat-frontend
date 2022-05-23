@@ -9,13 +9,15 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import useAuth from '../stores/auth';
-import supabase from '../modules/supabase/supabase';
 import { watchEffect } from 'vue';
+import supabase from '../modules/supabase/supabase';
+
+//* Stores
+import useAuthStore from '../stores/auth.store';
+const authStore = useAuthStore();
 
 const router = useRouter();
 
-const authStore = useAuth();
 
 //* redirect if authenticated
 watchEffect( () => {

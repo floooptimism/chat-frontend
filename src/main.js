@@ -10,13 +10,10 @@ initSupaBase();
 import Login from "./pages/Login.vue";
 import Chat from "./pages/Chat.vue";
 
-//* Faker
-import faker from "@faker-js/faker";
-
 //* Pinia instance and some stores
 import pinia from "./stores/piniaInstance";
-import useAuth from "./stores/auth";
-const authStore = useAuth();
+import useAuthStore from "./stores/auth.store";
+const authStore = useAuthStore();
 
 //* Router
 import { createRouter, createWebHistory } from "vue-router";

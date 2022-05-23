@@ -2,9 +2,10 @@
 import { ref } from "vue";
 import { faker } from "@faker-js/faker";
 import EntityLabel from "../../../EntityLabel/EntityLabel.vue";
-import useChannels from "../../../../stores/channel";
 
-const channelsStore = useChannels();
+//* Store
+import useChannelStore from "../../../../stores/channel.store";
+const channelsStore = useChannelStore();
 
 const props = defineProps({
   channelName: {
