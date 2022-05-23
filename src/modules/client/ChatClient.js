@@ -88,7 +88,7 @@ class ChatClient{
             auth: {
                 token: this.token
             },
-            query: "username=" + this.username
+            query: `username=${this.username}`
         });
 
         let self = this;
@@ -135,7 +135,7 @@ class ChatClient{
     sendMessage(message){
         if(!this.currentRoom) return;
         this.io.emit('message_to_room', {
-            message: message
+            message
         });
     }
 
@@ -144,7 +144,7 @@ class ChatClient{
      * @param {string} roomID 
      */
     joinRoom(roomID) {
-        this.io.emit('join_room', {roomID: roomID});
+        this.io.emit('join_room', {roomID});
     }
 
     /**

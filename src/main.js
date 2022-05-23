@@ -43,7 +43,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: routes,
+  routes
 });
 
 const app = createApp(App);
