@@ -18,7 +18,6 @@ import pinia from "./stores/piniaInstance";
 import useAuthStore from "./stores/auth.store";
 const authStore = useAuthStore();
 
-
 const routes = [
   {
     path: "/",
@@ -46,7 +45,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 const app = createApp(App);
