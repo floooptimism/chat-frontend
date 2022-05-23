@@ -99,7 +99,7 @@ class ChatClient{
             fail && fail();
         });
 
-        this.io.on('message_from_room', function ({user, message}){
+        this.io.on('message_from_room', ({user, message}) => {
             self.notifySubscribers('message_from_room', {user, message});
         });
         this.io.on('update_rooms', function (rooms){
@@ -107,17 +107,17 @@ class ChatClient{
             self.notifySubscribers('update_rooms', rooms);
         });
 
-        this.io.on('other_user_joined_room', function({users, newUser}){
+        this.io.on('other_user_joined_room', ({users, newUser}) => {
             self.updateUsersInRoom(users);
             self.notifySubscribers('other_user_joined_room', {users, newUser});
         });
 
-        this.io.on('other_user_left_room', function({users, userThatLeft}){
+        this.io.on('other_user_left_room', ({users, userThatLeft}) => {
             self.updateUsersInRoom(users);
             self.notifySubscribers('other_user_left_room', {users, userThatLeft});
         });
 
-        this.io.on('join_room_success', function({roomID}){
+        this.io.on('join_room_success', ({roomID}) => {
             self.setCurrentRoom(roomID);
             self.notifySubscribers('join_room_success', {roomID})
         })
