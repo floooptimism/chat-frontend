@@ -9,7 +9,6 @@ import ChannelInfo from "./components/ChannelInfo.vue";
 import useSideBarStore from "../../../stores/sidebar.store";
 const sideBarStore = useSideBarStore();
 
-
 // Event Handlers
 const eventHandlers = {
   goBack() {
@@ -17,9 +16,8 @@ const eventHandlers = {
   },
   channelAddButton() {
     alert("Adding new channel");
-  }
-
-}
+  },
+};
 
 // Computed values
 const SideBarClasses = computed(() => {
@@ -28,38 +26,38 @@ const SideBarClasses = computed(() => {
     Close: !sideBarStore.isOpen,
   };
 });
-
 </script>
-
 
 <template>
   <div class="SideBarContainer" :class="SideBarClasses">
     <div class="TopBar">
-      <ChannelListTopBar v-if="sideBarStore.isDisplayingChannels" @eventChannelAddButtonClick="eventHandlers.channelAddButton"/>
+      <ChannelListTopBar
+        v-if="sideBarStore.isDisplayingChannels"
+        @eventChannelAddButtonClick="eventHandlers.channelAddButton"
+      />
       <ChannelTopBar v-else @eventGoBack="eventHandlers.goBack" />
 
-      <div class="SideBarClose"  @click="sideBarStore.toggleSideBar()">
-            <svg
-            class="fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            >
-            <path
-                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-            />
-            </svg>
+      <div class="SideBarClose" @click="sideBarStore.toggleSideBar()">
+        <svg
+          class="fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+          />
+        </svg>
       </div>
     </div>
 
-    <div class="SideBar" >
+    <div class="SideBar">
       <ChannelsDisplay v-if="sideBarStore.isDisplayingChannels" />
       <ChannelInfo v-else />
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .SideBarContainer {
@@ -95,7 +93,7 @@ const SideBarClasses = computed(() => {
   @apply shadow;
   background-color: #120f13;
   @apply overflow-y-auto;
-  overscroll-behavior:  contain;
+  overscroll-behavior: contain;
 }
 
 .SideBarClose {

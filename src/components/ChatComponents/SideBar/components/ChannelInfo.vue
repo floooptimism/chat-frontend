@@ -31,11 +31,16 @@ const channelMembersList = ref(props.channelMembersList);
 <template>
   <div class="ChannelInfo">
     <h1 class="ChannelName">
-      {{ channelsStore.currentChannel && channelsStore.currentChannel.channelName }}
+      {{
+        channelsStore.currentChannel && channelsStore.currentChannel.channelName
+      }}
     </h1>
 
     <p class="ChannelDescription">
-      {{ channelsStore.currentChannel && channelsStore.currentChannel.channelDescription }}
+      {{
+        channelsStore.currentChannel &&
+        channelsStore.currentChannel.channelDescription
+      }}
     </p>
 
     <div class="MembersContainer">
@@ -63,17 +68,17 @@ const channelMembersList = ref(props.channelMembersList);
 .MembersHeader {
 }
 
-.ChannelName, .MembersHeader{
+.ChannelName,
+.MembersHeader {
   @apply text-lg font-medium tracking-wide;
 }
 
 .ChannelDescription {
   @apply mt-3;
-  font-family: 'Overpass', sans-serif;
+  font-family: "Overpass", sans-serif;
 }
 
 .MembersContainer {
   @apply mt-6;
 }
-
 </style>
