@@ -27,6 +27,7 @@ const routes = [
       if (!authStore.authenticated) {
         return { name: "login" };
       }
+      return true;
     },
   },
   {
@@ -37,6 +38,7 @@ const routes = [
       if (authStore.authenticated) {
         return { name: "chat" };
       }
+      return true;
     },
   },
 ];
