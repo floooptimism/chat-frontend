@@ -1,64 +1,63 @@
 <script setup>
-
 const props = defineProps({
-    imageSrc: String,
-    entityName: {
-        type: String,
-        default: "Unknown entity"
+  imageSrc: String,
+  entityName: {
+    type: String,
+    default: "Unknown entity",
+  },
+  entityIdentifier: String,
+  entityEventParam: {
+    type: Object,
+    default() {
+      return null;
     },
-    entityIdentifier: String,
-    entityEventParam: {
-        type: Object,
-        default() {
-            return null
-        }
-    },
-    classProp: {
-        type: String,
-        default: ""
-    }
-})
+  },
+  classProp: {
+    type: String,
+    default: "",
+  },
+});
 
 const emit = defineEmits(["eventEntityClicked"]);
-
 </script>
 
 <template>
-    <div :class="`Entity ${props.classProp}`" @click="emit('eventEntityClicked', props.entityEventParam)">
-        <div class="ImageContainer">
-            <img :src="props.imageSrc" alt="Channel Image" />
-        </div>
-
-        <div class="ml-4 font-medium">
-            {{ props.entityName }}
-        </div>
+  <div
+    :class="`Entity ${props.classProp}`"
+    @click="emit('eventEntityClicked', props.entityEventParam)"
+  >
+    <div class="ImageContainer">
+      <img :src="props.imageSrc" alt="Channel Image" />
     </div>
+
+    <div class="ml-4 font-medium">
+      {{ props.entityName }}
+    </div>
+  </div>
 </template>
 
 <style scoped>
-    .Entity {
-        @apply flex items-center;
-        @apply py-3 px-2 rounded;
-        @apply transition-colors ease-linear duration-200;
-    }
+.Entity {
+  @apply flex items-center;
+  @apply py-3 px-2 rounded;
+  @apply transition-colors ease-linear duration-200;
+}
 
+.Entity:hover {
+  background-color: #373538;
+}
 
-    .Entity:hover {
-        background-color: #373538;
-    }
+.ImageContainer {
+  @apply w-8 h-8;
+  min-height: 2rem;
+  min-width: 2rem;
+  @apply overflow-hidden;
+  @apply rounded-md;
+}
 
-    .ImageContainer {
-        @apply w-8 h-8;
-        min-height: 2rem;
-        min-width: 2rem;
-        @apply overflow-hidden;
-        @apply rounded-md;
-    }
-
-    .ImageContainer img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-
+.ImageContainer img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 </style>
