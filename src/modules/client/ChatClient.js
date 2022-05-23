@@ -107,7 +107,7 @@ class ChatClient{
         this.io.on('message_from_room', ({user, message}) => {
             self.notifySubscribers('message_from_room', {user, message});
         });
-        this.io.on('update_rooms', function (rooms){
+        this.io.on('update_rooms', (rooms) => {
             self.updateRooms(rooms);
             self.notifySubscribers('update_rooms', rooms);
         });
