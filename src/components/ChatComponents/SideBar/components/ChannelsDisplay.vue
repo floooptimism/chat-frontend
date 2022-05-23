@@ -21,7 +21,6 @@ const eventHandler = {
 };
 </script>
 
-
 <template>
   <div class="Channels">
     <input
@@ -38,7 +37,7 @@ const eventHandler = {
         :key="channel.channelId"
         :entityObject="channel"
         classProp="cursor-pointer"
-        :entityEventParam="{...channel}"
+        :entityEventParam="{ ...channel }"
         @eventEntityClicked="eventHandler.channelClicked"
       />
       <div v-if="channels.searchChannel(searchChannelInput).length == 0">
@@ -49,9 +48,6 @@ const eventHandler = {
 </template>
 
 <style scoped>
-
-
-
 .Channels {
   @apply flex flex-col px-2 pt-4;
   color: #e0e0e0;

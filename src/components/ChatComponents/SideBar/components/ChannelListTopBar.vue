@@ -1,9 +1,6 @@
 <script setup>
-
-const emit = defineEmits(["eventChannelAddButtonClick"])
-
+const emit = defineEmits(["eventChannelAddButtonClick"]);
 </script>
-
 
 <template>
   <h1>Channels</h1>
@@ -19,17 +16,15 @@ const emit = defineEmits(["eventChannelAddButtonClick"])
   </div>
 </template>
 
-
 <style scoped>
 .ChannelAddButton {
   @apply ml-auto;
   @apply rounded;
   @apply p-1;
   background-color: #252329;
-
 }
-.ChannelAddButton svg{
-    @apply fill-current;
-    text: #e0e0e0;
+.ChannelAddButton svg {
+  @apply fill-current;
+  text: #e0e0e0;
 }
 </style>
