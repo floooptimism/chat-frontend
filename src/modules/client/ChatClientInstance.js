@@ -1,3 +1,4 @@
+import ChatClient from './ChatClient';
 import pinia from '../../stores/piniaInstance';
 
 // * Stores
@@ -5,7 +6,6 @@ import useChannelStore from '../../stores/channel.store';
 import useUsersInChannelStore from '../../stores/usersInChannel.store';
 import useChatClientStateStore from '../../stores/chatClient.store';
 
-import ChatClient from './ChatClient';
 
 
 const client = new ChatClient();

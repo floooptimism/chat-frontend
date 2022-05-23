@@ -1,22 +1,23 @@
 import { createApp } from "vue";
+import { initSupaBase } from "./modules/supabase/supabase";
 import App from "./App.vue";
 import "./global.css";
-import { initSupaBase } from "./modules/supabase/supabase";
 
 //* Initialize supabase
 initSupaBase();
 
 //* Pages
-import Login from "./pages/Login.vue";
 import Chat from "./pages/Chat.vue";
+import Login from "./pages/Login.vue";
+
+//* Router
+import { createRouter, createWebHistory } from "vue-router";
 
 //* Pinia instance and some stores
 import pinia from "./stores/piniaInstance";
 import useAuthStore from "./stores/auth.store";
 const authStore = useAuthStore();
 
-//* Router
-import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
