@@ -8,7 +8,7 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6Y3F3eWNidnlidWNzZGtyZXZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDk5MjExMzEsImV4cCI6MTk2NTQ5NzEzMX0.7rVGq2Po4c1uxZjNWyFQaAOaZadgnxRhjXofm9_Sc80",
   {
     persistSession: true,
-    detectSessionInUrl: true
+    detectSessionInUrl: true,
   }
 );
 
@@ -25,6 +25,5 @@ export function initSupaBase() {
     }
   });
 }
-
 
 export default supabase;
