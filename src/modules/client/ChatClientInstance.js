@@ -34,9 +34,26 @@ function connected(){
     chatClientStore.connected();
 }
 
+function connect_error(){
+    console.log("Connect Error");
+    chatClientStore.disconnected();
+
+    // reconnect after a second
+    setTimeout(()=>{
+        client.connect();
+    }
+    , 1000);
+
+}
+
 function disconnected(){
     console.log("failed to connect to socket server");
     chatClientStore.disconnected();
+}
+
+function connecting(){
+    console.log("Connecting to socket server");
+    chatClientStore.connecting();
 }
 
 
@@ -47,19 +64,19 @@ client.subscribe('other_user_left_room', updateUsersInRoom);
 client.subscribe('join_room_success', updateCurrentRoom);
 client.subscribe('connected', connected);
 client.subscribe('disconnected', disconnected);
+client.subscribe('connect_error', connect_error);
+client.subscribe('connecting', connecting)
 
 
+client.setUrl(import.meta.env.VITE_SOCKETSERVER); 
 
 
-export function setupClient(token, username){
+export function setupClient(token){
     client.setToken(token);
-    client.setUsername(username);
-    client.setUrl("http://localhost:3001");
 }
 
 export function connectIfNotConnected(){
     if(!client.isConnected()){
-        chatClientStore.connecting();
         client.connect();
     }
 }
