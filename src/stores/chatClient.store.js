@@ -19,6 +19,7 @@ const useChatClientState = defineStore("chatClientState", {
         },
         disconnected(){
             this.isConnected = false;
+            this.isConnecting = false;
         }
     }
     
