@@ -43,7 +43,9 @@ class ChatClient{
             other_user_left_room: [],       // Triggered when a user leaves a room
             join_room_success: [],          // Triggered when this client successfully joins a room
             connected: [],                  // Triggered when the client is connected to the socket server
-            disconnected: []                // Triggered when the client is disconnected from the socket server
+            disconnected: [],                // Triggered when the client is disconnected from the socket server
+            connect_error: [],
+            connecting: []
         };
 
         /** @property {Boolean} connected - Indicates if the client is connnected or not */
@@ -84,12 +86,18 @@ class ChatClient{
      * @param {function} fail - callback function to be called when the client fails to connect
      */
     connect(success, fail){
+        if(this.io){
+            this.disconnect();
+        }
         this.io = new io(this.url, {
             auth: {
                 token: this.token
             },
             query: `username=${this.username}`
         });
+
+        // Connecting
+        this.notifySubscribers('connecting');
 
         let self = this;
 
@@ -98,10 +106,14 @@ class ChatClient{
             this.notifySubscribers('connected', {});
             success && success();
         });
-        this.io.on('connect_error', ()=>{
-            self.disconnect();
-            self.notifySubscribers('disconnected', {});
+        this.io.on('connect_error', (error)=>{
+            console.log("ChatClient -> Error:", error);
+            this.disconnect();
+            self.notifySubscribers('connect_error', {});
             fail && fail();
+        });
+        this.io.on('disconnect', () => {
+            this.notifySubscribers('disconnected', {});
         });
 
         this.io.on('message_from_room', ({user, message}) => {
