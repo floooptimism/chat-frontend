@@ -2,7 +2,8 @@
 
 
 <template>
-    <h1 @click="login" v-if="!authStore.authenticated">Login</h1>
+    <h1 @click="loginWithGithub" class="text-white" v-if="!authStore.authenticated">Login using github</h1>
+    <h1 @click="loginWithGoogle" class="text-white" v-if="!authStore.authenticated">Login using google</h1>
     <h1 v-else>Logged In</h1>
 
 </template>
@@ -29,16 +30,22 @@ watchEffect( () => {
 })
 
 
-
-
-async function login(){
+async function loginWithGithub(){
     const { user, session, error } = await supabase.auth.signIn({
     // provider can be 'github', 'google', 'gitlab', and more
     provider: 'github',
   }, {
-      redirectTo: 'http://localhost:3000/login'
+      redirectTo: import.meta.env.VITE_LOGINREDIRECT
   })
+}
 
+async function loginWithGoogle(){
+    const { user, session, error } = await supabase.auth.signIn({
+    // provider can be 'github', 'google', 'gitlab', and more
+    provider: 'google',
+  }, {
+      redirectTo: import.meta.env.VITE_LOGINREDIRECT
+  })
 }
 
 </script>
