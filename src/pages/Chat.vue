@@ -23,16 +23,20 @@ watchEffect(() => {
     }
 });
 
-
-setupClient(authStore.token, "testUser");
 connectIfNotConnected();
 
 </script>
 
 <template>
     <div>
-        <SideBarVue/>
-        <NavBarVue />
-        <ChatAreaVue />
+        <div v-if="chatClientStore.isConnected">
+            <SideBarVue/>
+            <NavBarVue />
+            <ChatAreaVue />
+        </div>
+
+        <div v-else>
+            <h1 class="text-white">Connecting!</h1>
+        </div>
     </div>
 </template>
