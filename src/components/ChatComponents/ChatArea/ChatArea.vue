@@ -21,7 +21,7 @@ const channelName = computed(() => {
 
 
 function isMutationAMessageAppend(mutation){
-    return mutation.events.newValue.hasOwnProperty("id")
+    return mutation.events.newValue && mutation.events.newValue.hasOwnProperty("id")
 }
 
 function checkScrollOffsetFromBottom(element, offset){
@@ -41,8 +41,12 @@ function newMessageNotification(){
 
 }
 
-// if there's a new message, scroll to the bottom if user is scrolled not far from the bottom,
-// else show a notification
+
+/**
+ * if there's a new message, scroll to the bottom if user is scrolled not far from the bottom,
+ * else show a notification
+ */
+
 STORE_channel.$subscribe( (mutation, state) => {
     if(isMutationAMessageAppend(mutation)){
         let chatArea = document.getElementById("chat-area");
