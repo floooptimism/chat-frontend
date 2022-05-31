@@ -1,26 +1,22 @@
 <script setup>
-import generateMessages from '../../../test_helpers/generateMessages';
-import generateUsers from '../../../test_helpers/generateUsers'
 
 import ChatMessage from './components/ChatMessage.vue';
 import ChatInput from './components/ChatInput.vue';
 
 import useChannels from '../../../stores/channel.store';
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
+import client from '../../../modules/client/ChatClientInstance';
 
-const channels = useChannels();
+const STORE_channel = useChannels();
 
-if (!channels.currentChannel) {
-    channels.setCurrentChannel(channels.channelList[0]);
+if (!STORE_channel.currentChannel) {
+    console.log(STORE_channel.channelList[0])
+    client.joinRoom(STORE_channel.channelList[0]);
 }
 
 const channelName = computed(() => {
-    return channels.currentChannel && channels.currentChannel.channelName;
+    return STORE_channel.currentChannel && STORE_channel.currentChannel.channelName;
 });
-
-let users = generateUsers(5);
-console.log(users);
-let messages = generateMessages(5, users);
 
 
 
@@ -30,8 +26,8 @@ let messages = generateMessages(5, users);
     <div class="ChatArea">
         <h1 class="ChannelWelcome">Welcome to <span class="font-medium italic">{{ channelName }} </span> channel</h1>
         <h6 class=" text-white py-5 opacity-80"> This is the start of this channel. </h6>
-        <div class="ChatMessages">
-            <ChatMessage v-for="message in messages" :key="message.id" :user="message.user" :content="message.content"
+        <div class="ChatMessages" >
+            <ChatMessage v-for="message in STORE_channel.currentChannelMessages" :key="message.id" :user="message.user" :message="message.message"
                 :time="message.timestamp" />
         </div>
 
