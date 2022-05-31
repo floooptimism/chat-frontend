@@ -4,21 +4,12 @@ import moment from 'moment';
 const props = defineProps({
     user: {
         type: Object,
-        default() {
-            return {}
-        }
     },
     message: {
         type: String,
-        default: '',
     },
     time: {
-        type: Date,
-        default: '',
-    },
-    content: {
-        type: String,
-        default: '',
+        type: Number,
     },
 });
 
