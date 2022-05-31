@@ -34,13 +34,13 @@ const timeFromNow = props.time ? moment(props.time).calendar() : '';
 
         <div class="Content">
             <div class="MessageHeader">
-                <span class="font-medium UserName">{{ props.user.username}}</span>
+                <span class="font-medium UserName">{{ props.user.name }}</span>
                 <div class="Time">
                     {{timeFromNow }}
                 </div>
             </div>
             <div class="MessageBody">
-                {{ props.content }}
+                {{ props.message }}
             </div>
         </div>
     </div>
