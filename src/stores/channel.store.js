@@ -2,12 +2,16 @@ import { defineStore } from "pinia";
 import stringSimilarity  from 'string-compare';
 import fakerGenerateChannels from '../test_helpers/generateChannels'
 
+let fchannels = fakerGenerateChannels(10);
+fchannels[0].channelId = "testing";
+
 const useChannels = defineStore('channels',{
     
     state: () => {
         return {
-            channelList: fakerGenerateChannels(10),
+            channelList: fchannels,
             currentChannel: null,
+            currentChannelMessages: [],
         }
     },
 
