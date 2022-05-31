@@ -22,7 +22,7 @@ const props = defineProps({
     },
 });
 
-const timeFromNow = props.time ? moment(props.time).fromNow() : '';
+const timeFromNow = props.time ? moment(props.time).calendar() : '';
 
 </script>
 
