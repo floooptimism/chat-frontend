@@ -61,7 +61,7 @@ class ChatClient{
     }
 
     setCurrentRoom(roomID){
-        this.currentRoom(roomID);
+        this.currentRoom = roomID;
     }
 
     setToken(token){
