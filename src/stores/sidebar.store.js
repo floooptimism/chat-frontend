@@ -14,8 +14,8 @@ const useSideBarStore = defineStore('sidebar', {
         toggleIsDisplayingChannels() {
             this.isDisplayingChannels = !this.isDisplayingChannels;
         },
-        setIsDisplayingChannels(param){
-            this.isDisplayingChannels = param;
+        setIsDisplayingChannels(displayChannel){
+            this.isDisplayingChannels = displayChannel;
         }
     }
     
