@@ -116,8 +116,8 @@ class ChatClient{
             this.notifySubscribers('disconnected', {});
         });
 
-        this.io.on('message_from_room', ({user, message}) => {
-            self.notifySubscribers('message_from_room', {user, message});
+        this.io.on('message_from_room', ({user, message, timestamp, id}) => {
+            self.notifySubscribers('message_from_room', {user, message, timestamp, id});
         });
         this.io.on('update_rooms', (rooms) => {
             self.updateRooms(rooms);
