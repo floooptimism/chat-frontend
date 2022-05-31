@@ -58,6 +58,10 @@ function connecting(){
     chatClientStore.connecting();
 }
 
+function message_from_room({id, user, message, timestamp}){
+    channelStore.appendMessage({id, user, message, timestamp});
+}
+
 
 
 client.subscribe('update_rooms', updateRooms);
