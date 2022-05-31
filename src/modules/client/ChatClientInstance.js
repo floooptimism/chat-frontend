@@ -5,13 +5,14 @@ import pinia from '../../stores/piniaInstance';
 import useChannelStore from '../../stores/channel.store';
 import useUsersInChannelStore from '../../stores/usersInChannel.store';
 import useChatClientStateStore from '../../stores/chatClient.store';
-
+import useSidebarStore from '../../stores/sidebar.store';
 
 
 const client = new ChatClient();
 const channelStore = useChannelStore(pinia);
 const usersInChannelStore = useUsersInChannelStore(pinia);
 const chatClientStore = useChatClientStateStore(pinia);
+const STORE_sidebar = useSidebarStore(pinia);
 
 window.chatClient = chatClientStore;
 
@@ -25,8 +26,9 @@ function updateUsersInRoom({users, newUser, userThatLeft}){
     usersInChannelStore.updateUsers(users);
 }
 
-function updateCurrentRoom({roomID}){
-    channelStore.setCurrentChannel(roomID);
+function updateCurrentRoom({room}){
+    channelStore.setCurrentChannel(room);
+    STORE_sidebar.setIsDisplayingChannels(false);
 }
 
 function connected(){
