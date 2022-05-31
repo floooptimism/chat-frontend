@@ -40,10 +40,11 @@ const channelName = computed(() => {
 <style scoped>
 
 .ChatArea {
-    @apply relative md:content-width-if-desktop md:ml-64 mt-12 pt-8 pb-14 px-6 overflow-y-auto;
-    /* change height depending on the navbar's height */
-    height: calc(100% - 48px)
+    @apply relative md:content-width-if-desktop md:ml-64 mt-12 pt-8 px-6 overflow-y-auto;
+    /* change height to accomodate navbar and chatbox */
+    height: calc(100vh - 124px)
 }
+
 
 .ChannelWelcome {
     @apply text-white text-3xl;
