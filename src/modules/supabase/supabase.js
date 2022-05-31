@@ -8,7 +8,7 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASEANONKEY,
   {
     persistSession: true,
-    detectSessionInUrl: true
+    detectSessionInUrl: true,
   }
 );
 
@@ -25,6 +25,5 @@ export function initSupaBase() {
     }
   });
 }
-
 
 export default supabase;
