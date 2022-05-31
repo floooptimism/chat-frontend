@@ -29,7 +29,7 @@ const timeFromNow = props.time ? moment(props.time).fromNow() : '';
 <template>
     <div class="Message">
         <div class="ProfileImage">
-            <img :src="user.profileImage" alt="Profile Image" />
+            <img :src="props.user.profile_picture" alt="Profile Image" />
         </div>
 
         <div class="Content">
