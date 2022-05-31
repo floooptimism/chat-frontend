@@ -67,6 +67,7 @@ function message_from_room({id, user, message, timestamp}){
 client.subscribe('update_rooms', updateRooms);
 client.subscribe('other_user_joined_room', updateUsersInRoom);
 client.subscribe('other_user_left_room', updateUsersInRoom);
+client.subscribe('message_from_room', message_from_room)
 client.subscribe('join_room_success', updateCurrentRoom);
 client.subscribe('connected', connected);
 client.subscribe('disconnected', disconnected);
