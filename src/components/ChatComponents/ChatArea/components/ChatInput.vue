@@ -1,5 +1,6 @@
 <script setup>
 import {ref, computed} from 'vue';
+import chatClient from '../../../../modules/client/ChatClientInstance';
 
 const chatMessage = ref("");
 const chatInputElementRef = ref(null);
@@ -14,6 +15,9 @@ const eventHandler = {
     sendMessage(e) {
         e.preventDefault();
         let message = chatMessage.value;
+
+        chatClient.sendMessage(message);
+
         chatMessage.value = '';
         chatInputElementRef.value.innerText = '';
     },
@@ -37,7 +41,7 @@ const eventHandler = {
             @keydown.enter.exact="eventHandler.sendMessage"
             contenteditable></div>
 
-        <div class="ChatSendButton">
+        <div class="ChatSendButton" @click="eventHandler.sendMessage">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
             </svg>
