@@ -145,7 +145,9 @@ class ChatClient{
      * @param {string} message 
      */
     sendMessage(message){
-        if(!this.currentRoom) return;
+        if(!this.currentRoom){
+            throw new Error("ChatClient -> Cannot send message, not in a room");
+        }
         this.io.emit('message_to_room', {
             message
         });
