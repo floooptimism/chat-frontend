@@ -157,8 +157,8 @@ class ChatClient{
      * Joins a room
      * @param {string} roomID 
      */
-    joinRoom(roomID) {
-        this.io.emit('join_room', {roomID});
+    joinRoom(room) {
+        this.io.emit('join_room', {room});
     }
 
     /**
