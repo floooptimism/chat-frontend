@@ -66,7 +66,7 @@ const eventHandler = {
     background: hsl(280deg 5% 19%);
 }
 .ChatInputContainer {
-    @apply flex relative items-end py-2 md:py-2 rounded-md;
+    @apply flex relative items-end py-2 rounded-md;
     background-color: #3c393f;
 }
 
