@@ -4,7 +4,7 @@ import ChatMessage from './components/ChatMessage.vue';
 import ChatInput from './components/ChatInput.vue';
 
 import useChannels from '../../../stores/channel.store';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import client from '../../../modules/client/ChatClientInstance';
 
 const STORE_channel = useChannels();
@@ -20,13 +20,49 @@ const channelName = computed(() => {
 
 
 
+function isMutationAMessageAppend(mutation){
+    return mutation.events.newValue.hasOwnProperty("id")
+}
+
+function checkScrollOffsetFromBottom(element, offset){
+    return element.scrollHeight - element.scrollTop - element.clientHeight <= offset;
+}
+
+function scrollToBottom(element) {
+    setTimeout(()=>{
+        element.scrollBy({
+            top: element.scrollHeight,
+            behavior: 'smooth'
+        })
+    },0);
+}
+
+function newMessageNotification(){
+
+}
+
+// if there's a new message, scroll to the bottom if user is scrolled not far from the bottom,
+// else show a notification
+STORE_channel.$subscribe( (mutation, state) => {
+    if(isMutationAMessageAppend(mutation)){
+        let chatArea = document.getElementById("chat-area");
+        if(checkScrollOffsetFromBottom(chatArea, 300)){
+            scrollToBottom(chatArea);
+        }else{
+            newMessageNotification();
+        }
+    }
+})
+
+
+
 </script>
 
 <template>
-    <div class="ChatArea">
+    <div class="ChatArea" id="chat-area">
         <h1 class="ChannelWelcome">Welcome to <span class="font-medium italic">{{ channelName }} </span> channel</h1>
         <h6 class=" text-white py-5 opacity-80"> This is the start of this channel. </h6>
-        <div class="ChatMessages" >
+        <div class="ChatMessages">
             <ChatMessage v-for="message in STORE_channel.currentChannelMessages" :key="message.id" :user="message.user" :message="message.message"
                 :time="message.timestamp" />
         </div>
