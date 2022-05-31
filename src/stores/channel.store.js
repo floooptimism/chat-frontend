@@ -28,7 +28,18 @@ const useChannels = defineStore('channels',{
         },
 
         setCurrentChannel(channel){
+            let currentChannelId = this.currentChannel && this.currentChannel.channelId;
+            if(channel.channelId === currentChannelId) return;
             this.currentChannel = channel;
+            this.clearMessages();
+        },
+
+        appendMessage(message){
+            this.currentChannelMessages.push(message);
+        },
+
+        clearMessages(){
+            this.currentChannelMessages = [];
         }
     }
 
