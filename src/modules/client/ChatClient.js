@@ -134,9 +134,9 @@ class ChatClient{
             self.notifySubscribers('other_user_left_room', {users, userThatLeft});
         });
 
-        this.io.on('join_room_success', ({roomID}) => {
-            self.setCurrentRoom(roomID);
-            self.notifySubscribers('join_room_success', {roomID})
+        this.io.on('join_room_success', ({room}) => {
+            self.setCurrentRoom(room.channelId);
+            self.notifySubscribers('join_room_success', {room})
         })
     }
 
