@@ -6,8 +6,10 @@ import stringSimilarity from "string-compare";
 //* Stores
 import useChannelStore from "../../../../stores/channel.store";
 import useSideBarStore from "../../../../stores/sidebar.store";
+import chatClient from "../../../../modules/client/ChatClientInstance";
 const channels = useChannelStore();
 const sideBarStore = useSideBarStore();
+
 
 //* local states
 const searchChannelInput = ref("");
@@ -15,8 +17,7 @@ const searchChannelInput = ref("");
 //* Event Handlers
 const eventHandler = {
   channelClicked(channel) {
-    channels.setCurrentChannel(channel);
-    sideBarStore.setIsDisplayingChannels(false);
+    chatClient.joinRoom(channel);
   },
 };
 </script>
