@@ -4,8 +4,8 @@ import pinia from "../../stores/piniaInstance";
 import { setupClient } from "../client/ChatClientInstance";
 
 const supabase = createClient(
-  "https://dzcqwycbvybucsdkrevg.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6Y3F3eWNidnlidWNzZGtyZXZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDk5MjExMzEsImV4cCI6MTk2NTQ5NzEzMX0.7rVGq2Po4c1uxZjNWyFQaAOaZadgnxRhjXofm9_Sc80",
+  import.meta.env.VITE_SUPABASE,
+  import.meta.env.VITE_SUPABASEANONKEY,
   {
     persistSession: true,
     detectSessionInUrl: true
