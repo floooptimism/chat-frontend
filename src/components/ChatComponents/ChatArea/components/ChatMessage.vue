@@ -48,6 +48,10 @@ span {
     @apply flex md:p-4 md:px-2 text-white my-6 md:my-3;
 }
 
+.Message:last-child{
+    @apply pb-0 mb-0;
+}
+
 .ProfileImage {
     @apply flex items-start md:px-2 md:py-1 justify-center;
    
