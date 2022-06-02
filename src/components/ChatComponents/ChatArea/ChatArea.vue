@@ -49,7 +49,8 @@ function newMessageNotification(){
  */
 
 STORE_channel.$subscribe( (mutation, state) => {
-    if(isMutationAMessageAppend(mutation)){
+    const mutateDuplicate  = {...mutation};
+    if(isMutationAMessageAppend(mutateDuplicate)){
         let chatArea = document.getElementById("chat-area");
         if(checkScrollOffsetFromBottom(chatArea, 300)){
             scrollToBottom(chatArea);
