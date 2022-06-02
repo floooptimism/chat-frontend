@@ -10,7 +10,6 @@ import chatClient from "../../../../modules/client/ChatClientInstance";
 const channels = useChannelStore();
 const sideBarStore = useSideBarStore();
 
-
 //* local states
 const searchChannelInput = ref("");
 
@@ -21,7 +20,6 @@ const eventHandler = {
   },
 };
 </script>
-
 
 <template>
   <div class="Channels">
@@ -39,7 +37,7 @@ const eventHandler = {
         :key="channel.id"
         :entityObject="channel"
         classProp="cursor-pointer"
-        :entityEventParam="{...channel}"
+        :entityEventParam="{ ...channel }"
         @eventEntityClicked="eventHandler.channelClicked"
       />
       <div v-if="channels.searchChannel(searchChannelInput).length == 0">
@@ -50,9 +48,6 @@ const eventHandler = {
 </template>
 
 <style scoped>
-
-
-
 .Channels {
   @apply flex flex-col px-2 pt-4;
   color: #e0e0e0;

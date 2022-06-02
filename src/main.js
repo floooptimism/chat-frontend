@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { initSupaBase } from "./modules/supabase/supabase";
 import App from "./App.vue";
 import "./global.css";
-import { vfmPlugin } from 'vue-final-modal'
+import { vfmPlugin } from "vue-final-modal";
 
 //* Pages
 import Chat from "./pages/Chat.vue";
@@ -19,7 +19,6 @@ import useAuthStore from "./stores/auth.store";
 initSupaBase();
 
 const authStore = useAuthStore();
-
 
 const routes = [
   {
@@ -48,7 +47,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 const app = createApp(App);
@@ -57,5 +56,3 @@ app.use(router);
 app.use(vfmPlugin);
 
 app.mount("#app");
-
-
