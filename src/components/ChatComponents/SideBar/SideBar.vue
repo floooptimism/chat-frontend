@@ -16,7 +16,7 @@ const eventHandlers = {
     sideBarStore.setIsDisplayingChannels(true);
   },
   channelAddButton() {
-    alert("Adding new channel");
+    alert("Not implemented");
   }
 
 }
