@@ -2,6 +2,8 @@
 import NavBarVue from '../components/ChatComponents/NavBar/NavBar.vue';
 import SideBarVue from '../components/ChatComponents/SideBar/SideBar.vue';
 import ChatAreaVue from '../components/ChatComponents/ChatArea/ChatArea.vue';
+import ProjectInfo from '../components/ProjectInfo/ProjectInfo.vue';
+
 import { useRouter } from 'vue-router';
 import { connectIfNotConnected } from '../modules/client/ChatClientInstance';
 import { watchEffect } from 'vue';
@@ -17,6 +19,7 @@ const authStore = useAuthStore();
 document.title = "Chat App";
 const router = useRouter();
 
+
 watchEffect(() => {
     if (!authStore.authenticated) {
         router.push({
@@ -25,12 +28,15 @@ watchEffect(() => {
     }
 });
 
+
 connectIfNotConnected();
 
 </script>
 
 <template>
     <div>
+        
+
         <div v-if="chatClientStore.isConnected">
             <SideBarVue />
             <NavBarVue />
@@ -54,6 +60,9 @@ connectIfNotConnected();
             </div>
             <p class="LoaderText">Connecting</p>
         </div>
+
+        <ProjectInfo/>
+        
     </div>
 </template>
 
