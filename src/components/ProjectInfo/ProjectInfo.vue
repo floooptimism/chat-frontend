@@ -30,7 +30,7 @@ const eventHandlers = {
 
 <style scoped>
     .Notify{
-        @apply absolute w-5/6 -translate-x-1/2 py-8 px-8 top-24 left-1/2;
+        @apply absolute w-5/6 md:w-auto -translate-x-1/2 py-8 px-8 top-24 left-1/2;
         @apply break-words;
         background-color: var(--primary-color);
         color: var(--text-color);

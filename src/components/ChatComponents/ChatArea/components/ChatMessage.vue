@@ -28,7 +28,7 @@ const userProfilePicture = `https://robohash.org/${props.message.user.name}`;
                 </div>
             </div>
             <div class="MessageBody">
-                {{ props.message.message }}
+                    {{ props.message.message }}
             </div>
         </div>
     </div>
@@ -42,6 +42,7 @@ span {
     margin: 0;
 }
 .Message {
+    @apply w-full;
     @apply flex md:p-4 md:px-2 text-white my-6 md:my-3;
 }
 
@@ -67,7 +68,7 @@ span {
 }
 
 .MessageHeader {
-    @apply flex items-center     px-1;
+    @apply flex items-center  px-1;
 }
 
 .UserName {
@@ -80,6 +81,9 @@ span {
 }
 
 .MessageBody {
+    @apply whitespace-pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
     @apply px-1 py-2;
     font-family: 'Overpass', sans-serif;
     color: #dcddde;

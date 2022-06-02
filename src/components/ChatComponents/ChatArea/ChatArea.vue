@@ -77,7 +77,6 @@ STORE_channel.$subscribe( (mutation, state) => {
     height: calc(100vh - 124px)
 }
 
-
 .ChannelWelcome {
     @apply text-white text-3xl;
 }
