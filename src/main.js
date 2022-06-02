@@ -3,9 +3,6 @@ import { initSupaBase } from "./modules/supabase/supabase";
 import App from "./App.vue";
 import "./global.css";
 
-//* Initialize supabase
-initSupaBase();
-
 //* Pages
 import Chat from "./pages/Chat.vue";
 import Login from "./pages/Login.vue";
@@ -16,6 +13,10 @@ import { createRouter, createWebHistory } from "vue-router";
 //* Pinia instance and some stores
 import pinia from "./stores/piniaInstance";
 import useAuthStore from "./stores/auth.store";
+
+//* Initialize supabase
+initSupaBase();
+
 const authStore = useAuthStore();
 
 
