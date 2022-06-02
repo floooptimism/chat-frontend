@@ -62,6 +62,22 @@ function message_from_room({id, user, message, timestamp}){
     channelStore.appendMessage({id, user, message, timestamp});
 }
 
+function message_from_server({message, timestamp}){
+    console.log("RECEIEVD", message, timestamp);
+    const newMessage = {
+        id: "server"+timestamp,
+        user:{
+            name: "Server",
+        },
+        message,
+        timestamp,
+        fromServer: true
+    }
+
+    channelStore.appendMessage(newMessage);
+
+}
+
 
 
 client.subscribe('update_rooms', updateRooms);
@@ -73,6 +89,7 @@ client.subscribe('connected', connected);
 client.subscribe('disconnected', disconnected);
 client.subscribe('connect_error', connect_error);
 client.subscribe('connecting', connecting)
+client.subscribe('message_from_server', message_from_server);
 
 
 client.setUrl(import.meta.env.VITE_SOCKETSERVER); 
