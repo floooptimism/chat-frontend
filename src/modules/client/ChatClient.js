@@ -45,7 +45,8 @@ class ChatClient{
             connected: [],                  // Triggered when the client is connected to the socket server
             disconnected: [],                // Triggered when the client is disconnected from the socket server
             connect_error: [],
-            connecting: []
+            connecting: [],
+            message_from_server: []
         };
 
         /** @property {Boolean} connected - Indicates if the client is connnected or not */
@@ -135,8 +136,12 @@ class ChatClient{
         });
 
         this.io.on('join_room_success', ({room}) => {
-            self.setCurrentRoom(room.channelId);
+            self.setCurrentRoom(room);
             self.notifySubscribers('join_room_success', {room})
+        })
+
+        this.io.on('message_from_server', message => {
+            self.notifySubscribers('message_from_server', message);
         })
     }
 

@@ -2,36 +2,33 @@
 import moment from 'moment';
 
 const props = defineProps({
-    user: {
-        type: Object,
-    },
     message: {
-        type: String,
-    },
-    time: {
-        type: Number,
-    },
+        type: Object,
+        required: true
+    }
 });
 
-const timeFromNow = props.time ? moment(props.time).calendar() : '';
+const timeFromNow = props.message.timestamp ? moment(props.time).calendar() : '';
+const serverProfilePicture = "https://avatars.dicebear.com/api/bottts/server-this-is.svg";
+const userProfilePicture = `https://robohash.org/${props.message.user.name}`;
 
 </script>
 
 <template>
     <div class="Message">
         <div class="ProfileImage">
-            <img :src="props.user.profile_picture" alt="Profile Image" />
+            <img :src="props.message.fromServer ? serverProfilePicture : userProfilePicture" alt="Profile Image" />
         </div>
 
         <div class="Content">
             <div class="MessageHeader">
-                <span class="font-medium UserName">{{ props.user.name }}</span>
+                <span class="font-medium UserName">{{ props.message.user.name }}</span>
                 <div class="Time">
                     {{timeFromNow }}
                 </div>
             </div>
             <div class="MessageBody">
-                {{ props.message }}
+                {{ props.message.message }}
             </div>
         </div>
     </div>

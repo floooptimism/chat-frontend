@@ -15,7 +15,7 @@ if (!STORE_channel.currentChannel) {
 }
 
 const channelName = computed(() => {
-    return STORE_channel.currentChannel && STORE_channel.currentChannel.channelName;
+    return STORE_channel.currentChannel && STORE_channel.currentChannel.name;
 });
 
 
@@ -67,8 +67,7 @@ STORE_channel.$subscribe( (mutation, state) => {
         <h1 class="ChannelWelcome">Welcome to <span class="font-medium italic">{{ channelName }} </span> channel</h1>
         <h6 class=" text-white py-5 opacity-80"> This is the start of this channel. </h6>
         <div class="ChatMessages">
-            <ChatMessage v-for="message in STORE_channel.currentChannelMessages" :key="message.id" :user="message.user" :message="message.message"
-                :time="message.timestamp" />
+            <ChatMessage v-for="message in STORE_channel.currentChannelMessages" :key="message.id" :message="message"/>
         </div>
 
         <div class="ChatBox">
