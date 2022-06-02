@@ -19,7 +19,6 @@ initSupaBase();
 
 const authStore = useAuthStore();
 
-
 const routes = [
   {
     path: "/",
@@ -47,7 +46,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 const app = createApp(App);
