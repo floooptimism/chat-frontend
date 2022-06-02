@@ -34,9 +34,9 @@ const eventHandler = {
     <div class="ChannelsList">
       <EntityLabel
         v-for="channel in channels.searchChannel(searchChannelInput)"
-        :imageSrc="channel.channelImage"
-        :entityName="channel.channelName"
-        :key="channel.channelId"
+        :imageSrc="channel.image"
+        :entityName="channel.name"
+        :key="channel.id"
         :entityObject="channel"
         classProp="cursor-pointer"
         :entityEventParam="{...channel}"

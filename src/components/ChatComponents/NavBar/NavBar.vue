@@ -25,7 +25,7 @@ const eventHandlers = {
 
         <div class="ChannelNameContainer">
             <span class="ChannelName">
-                {{ channelsStore.currentChannel && channelsStore.currentChannel.channelName }}
+                {{ channelsStore.currentChannel && channelsStore.currentChannel.name }}
             </span>
 
         </div>

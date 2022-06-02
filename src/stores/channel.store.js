@@ -21,7 +21,7 @@ const useChannels = defineStore('channels',{
                 if (channelName.trim() === "") {
                     return state.channelList;
                   }
-                return state.channelList.filter(channel => stringSimilarity(channel.channelName, channelName) >= 0.5);
+                return state.channelList.filter(channel => stringSimilarity(channel.name, channelName) >= 0.5);
             }
         }
     },
@@ -32,7 +32,7 @@ const useChannels = defineStore('channels',{
         },
 
         setCurrentChannel(channel){
-            let currentChannelId = this.currentChannel && this.currentChannel.channelId;
+            let currentChannelId = this.currentChannel && this.currentChannel.id;
             if(channel.channelId === currentChannelId) return;
             this.currentChannel = channel;
             this.clearMessages();
