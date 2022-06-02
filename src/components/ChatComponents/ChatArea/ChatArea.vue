@@ -18,13 +18,6 @@ const channelName = computed(() => {
     return STORE_channel.currentChannel && STORE_channel.currentChannel.name;
 });
 
-
-
-function isMutationAMessageAppend(mutation){
-    if(!mutation.events) return;
-    return mutation.events.newValue && mutation.events.newValue.hasOwnProperty("id")
-}
-
 function checkScrollOffsetFromBottom(element, offset){
     return element.scrollHeight - element.scrollTop - element.clientHeight <= offset;
 }
@@ -48,14 +41,12 @@ function newMessageNotification(){
  * else show a notification
  */
 
+const chatAreaContainer = ref(null);
 STORE_channel.$subscribe( (mutation, state) => {
-    if(isMutationAMessageAppend(mutation)){
-        let chatArea = document.getElementById("chat-area");
-        if(checkScrollOffsetFromBottom(chatArea, 300)){
-            scrollToBottom(chatArea);
-        }else{
-            newMessageNotification();
-        }
+    if(checkScrollOffsetFromBottom(chatAreaContainer, 300)){
+        scrollToBottom(chatArea);
+    }else{
+        newMessageNotification();
     }
 })
 
@@ -64,7 +55,7 @@ STORE_channel.$subscribe( (mutation, state) => {
 </script>
 
 <template>
-    <div class="ChatArea" id="chat-area">
+    <div class="ChatArea" ref="chatAreaContainer">
         <h1 class="ChannelWelcome">Welcome to <span class="font-medium italic">{{ channelName }} </span> channel</h1>
         <h6 class=" text-white py-5 opacity-80"> This is the start of this channel. </h6>
         <div class="ChatMessages">
