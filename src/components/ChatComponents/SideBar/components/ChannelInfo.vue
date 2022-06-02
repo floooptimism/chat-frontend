@@ -6,8 +6,6 @@ import EntityLabel from "../../../EntityLabel/EntityLabel.vue";
 //* Store
 import useChannelStore from "../../../../stores/channel.store";
 const channelsStore = useChannelStore();
-
-
 </script>
 
 <template>
@@ -17,7 +15,9 @@ const channelsStore = useChannelStore();
     </h1>
 
     <p class="ChannelDescription">
-      {{ channelsStore.currentChannel && channelsStore.currentChannel.description }}
+      {{
+        channelsStore.currentChannel && channelsStore.currentChannel.description
+      }}
     </p>
 
     <div class="MembersContainer">
@@ -45,17 +45,17 @@ const channelsStore = useChannelStore();
 .MembersHeader {
 }
 
-.ChannelName, .MembersHeader{
+.ChannelName,
+.MembersHeader {
   @apply text-lg font-medium tracking-wide;
 }
 
 .ChannelDescription {
   @apply mt-3;
-  font-family: 'Overpass', sans-serif;
+  font-family: "Overpass", sans-serif;
 }
 
 .MembersContainer {
   @apply mt-6;
 }
-
 </style>
