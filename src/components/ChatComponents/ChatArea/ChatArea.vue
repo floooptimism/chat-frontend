@@ -43,8 +43,9 @@ function newMessageNotification(){
 
 const chatAreaContainer = ref(null);
 STORE_channel.$subscribe( (mutation, state) => {
-    if(checkScrollOffsetFromBottom(chatAreaContainer, 300)){
-        scrollToBottom(chatArea);
+    if(!chatAreaContainer.value) return;
+    if(checkScrollOffsetFromBottom(chatAreaContainer.value , 300)){
+        scrollToBottom(chatAreaContainer.value);
     }else{
         newMessageNotification();
     }
