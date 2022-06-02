@@ -39,7 +39,12 @@ const useChannels = defineStore('channels',{
         },
 
         appendMessage(message){
+            // if greater than 100, remove first message
+            if(this.currentChannelMessages.length >= 100){
+                this.currentChannelMessages.shift();
+            }
             this.currentChannelMessages.push(message);
+            
         },
 
         clearMessages(){
