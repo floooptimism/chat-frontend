@@ -21,6 +21,7 @@ const channelName = computed(() => {
 
 
 function isMutationAMessageAppend(mutation){
+    if(!mutation.events) return;
     return mutation.events.newValue && mutation.events.newValue.hasOwnProperty("id")
 }
 
