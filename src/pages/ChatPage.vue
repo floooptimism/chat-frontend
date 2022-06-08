@@ -1,42 +1,36 @@
 <script setup>
-import NavBarVue from '../components/ChatComponents/NavBar/NavBar.vue';
-import SideBarVue from '../components/ChatComponents/SideBar/SideBar.vue';
-import ChatAreaVue from '../components/ChatComponents/ChatArea/ChatArea.vue';
-import ProjectInfo from '../components/ProjectInfo/ProjectInfo.vue';
+import NavBarVue from '../components/ChatComponents/NavBar/NavBar.vue'
+import SideBarVue from '../components/ChatComponents/SideBar/SideBar.vue'
+import ChatAreaVue from '../components/ChatComponents/ChatArea/ChatArea.vue'
+import ProjectInfo from '../components/ProjectInfo/ProjectInfo.vue'
 
-import { useRouter } from 'vue-router';
-import { connectIfNotConnected } from '../modules/client/ChatClientInstance';
-import { watchEffect } from 'vue';
-
+import { useRouter } from 'vue-router'
+import { connectIfNotConnected } from '../modules/client/ChatClientInstance'
+import { watchEffect } from 'vue'
 
 //* Stores
-import useAuthStore from '../stores/auth.store';
-import useChatClientStateStore from '../stores/chatClient.store';
-const chatClientStore = useChatClientStateStore();
-const authStore = useAuthStore();
+import useAuthStore from '../stores/auth.store'
+import useChatClientStateStore from '../stores/chatClient.store'
+const chatClientStore = useChatClientStateStore()
+const authStore = useAuthStore()
 
-
-document.title = "Chat App";
-const router = useRouter();
-
+document.title = 'Chat App'
+const router = useRouter()
 
 watchEffect(() => {
     if (!authStore.authenticated) {
         router.push({
-            name: 'login'
+            name: 'login',
         })
     }
-});
+})
 
 // Connect chat client
-connectIfNotConnected();
-
+connectIfNotConnected()
 </script>
 
 <template>
     <div>
-        
-
         <div v-if="chatClientStore.isConnected">
             <SideBarVue />
             <NavBarVue />
@@ -61,25 +55,19 @@ connectIfNotConnected();
             <p class="LoaderText">Connecting</p>
         </div>
 
-        <ProjectInfo/>
-        
+        <ProjectInfo />
     </div>
 </template>
-
 
 <style scoped>
 .Loader {
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center flex-col;
 }
 
-.LoaderText{
+.LoaderText {
     @apply bottom-8 text-xs opacity-70 absolute;
     color: var(--text-color);
 }
-
-
-
-
 
 /* spinner */
 .sk-circle {
@@ -232,7 +220,6 @@ connectIfNotConnected();
 }
 
 @-webkit-keyframes sk-circleBounceDelay {
-
     0%,
     80%,
     100% {
@@ -247,7 +234,6 @@ connectIfNotConnected();
 }
 
 @keyframes sk-circleBounceDelay {
-
     0%,
     80%,
     100% {
