@@ -28,7 +28,7 @@ watchEffect(() => {
     }
 });
 
-
+// Connect chat client
 connectIfNotConnected();
 
 </script>
