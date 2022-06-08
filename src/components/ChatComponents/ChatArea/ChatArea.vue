@@ -4,7 +4,7 @@ import ChatMessage from './components/ChatMessage.vue';
 import ChatInput from './components/ChatInput.vue';
 
 import useChannels from '../../../stores/channel.store';
-import { ref, computed, watch } from 'vue';
+import { ref, computed } from 'vue';
 import client from '../../../modules/client/ChatClientInstance';
 
 const STORE_channel = useChannels();
@@ -42,7 +42,7 @@ function newMessageNotification(){
  */
 
 const chatAreaContainer = ref(null);
-STORE_channel.$subscribe( (mutation, state) => {
+STORE_channel.$subscribe( () => {
     if(!chatAreaContainer.value) return;
     if(checkScrollOffsetFromBottom(chatAreaContainer.value , 300)){
         scrollToBottom(chatAreaContainer.value);
@@ -56,7 +56,7 @@ STORE_channel.$subscribe( (mutation, state) => {
 </script>
 
 <template>
-    <div class="ChatArea" ref="chatAreaContainer">
+    <div ref="chatAreaContainer" class="ChatArea">
         <h1 class="ChannelWelcome">Welcome to <span class="font-medium italic">{{ channelName }} </span> channel</h1>
         <h6 class=" text-white py-5 opacity-80"> This is the start of this channel. </h6>
         <div class="ChatMessages">

@@ -5,8 +5,8 @@ import "./global.css";
 import { vfmPlugin } from 'vue-final-modal'
 
 //* Pages
-import Chat from "./pages/Chat.vue";
-import Login from "./pages/Login.vue";
+import Chat from "./pages/ChatPage.vue";
+import Login from "./pages/LoginPage.vue";
 
 //* Router
 import { createRouter, createWebHistory } from "vue-router";
@@ -26,7 +26,7 @@ const routes = [
     path: "/",
     name: "chat",
     component: Chat,
-    beforeEnter: (to, from) => {
+    beforeEnter: () => {
       if (!authStore.authenticated) {
         return { name: "login" };
       }
@@ -37,7 +37,7 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
-    beforeEnter: (to, from) => {
+    beforeEnter: () => {
       if (authStore.authenticated) {
         return { name: "chat" };
       }
